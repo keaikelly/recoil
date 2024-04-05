@@ -1,11 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import { RecoilRoot, useRecoilState } from "recoil";
+import { countState } from "./atom";
+
+
+function Counter() {
+  const [count, setCount] = useRecoilState(countState);
+
+  return (
+    <div>
+      <h1>HI</h1>
+      <button onClick={() => {
+        setCount(count + 1);
+
+      }}>+</button>
+    </div>
+
+  );
+}
+
+function DisplayCounter() {
+  const [count] = useRecoilState(countState);
+  return <div>{count}</div>;
+}
 
 function App() {
   return (
-    <div>
-      <h1>init</h1>
-    </div>
+    <RecoilRoot>
+      <div>
+        <Counter />
+        <DisplayCounter />
+      </div>
+
+    </RecoilRoot>
+
   );
 }
 
